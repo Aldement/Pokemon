@@ -9,7 +9,7 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(commands=['go'])
 def go(message):
     if message.from_user.username not in Pokemon.pokemons.keys():
-        chance = random.randint(1,10)
+        chance = random.randint(1, 10)
         if chance == 1 or chance >= 7:
             pokemon = Pokemon(message.from_user.username)
         elif chance == 7 or chance == 8:
@@ -17,7 +17,6 @@ def go(message):
         elif chance == 9 or chance == 10:
             pokemon = Fighter(message.from_user.username)
 
-        pokemon = Pokemon(message.from_user.username)
         bot.send_message(message.chat.id, pokemon.info())
         bot.send_photo(message.chat.id, pokemon.show_img())
         bot.send_message(message.chat.id, pokemon.show_abilities())
